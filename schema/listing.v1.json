@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bobdivx/devforge-store/schema/listing.v1.json",
+  "title": "DevForge Store listing",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "slug", "name", "git_repository", "git_branch", "runtime_defaults", "env_schema"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 80 },
+    "name": { "type": "string", "minLength": 1, "maxLength": 255 },
+    "description": { "type": ["string", "null"], "maxLength": 4000 },
+    "category": {
+      "type": ["string", "null"],
+      "enum": ["web", "api", "cms", "ecommerce", "ai", "devops", "other", null]
+    },
+    "icon_url": { "type": ["string", "null"], "format": "uri" },
+    "website_url": { "type": ["string", "null"], "format": "uri" },
+    "git_repository": { "type": "string", "pattern": "^[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+$" },
+    "git_branch": { "type": "string", "minLength": 1, "maxLength": 255 },
+    "git_commit_sha": { "type": ["string", "null"] },
+    "runtime_defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "build_pack": { "type": "string", "enum": ["nixpacks", "railpack", "static", "dockerfile", "dockercompose", "dockerimage"] },
+        "is_static": { "type": "boolean" },
+        "start_command": { "type": ["string", "null"] },
+        "install_command": { "type": ["string", "null"] },
+        "build_command": { "type": ["string", "null"] },
+        "ports_exposes": { "type": "string" },
+        "base_directory": { "type": "string" },
+        "publish_directory": { "type": "string" },
+        "detected_framework": { "type": ["string", "null"] },
+        "health_check_enabled": { "type": "boolean" },
+        "health_check_type": { "type": "string", "enum": ["http", "cmd"] },
+        "health_check_path": { "type": "string" },
+        "health_check_port": { "type": ["string", "null"] }
+      }
+    },
+    "env_schema": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "is_secret", "required"],
+        "properties": {
+          "key": { "type": "string" },
+          "is_secret": { "type": "boolean" },
+          "required": { "type": "boolean" },
+          "default": { "type": ["string", "null"] },
+          "description": { "type": ["string", "null"] },
+          "is_runtime": { "type": "boolean" },
+          "is_buildtime": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

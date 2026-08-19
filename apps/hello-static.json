@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "slug": "hello-static",
+  "name": "Hello Static",
+  "description": "Exemple de listing Store : site statique avec une variable publique et un secret à saisir à l’installation.",
+  "category": "web",
+  "icon_url": null,
+  "website_url": null,
+  "git_repository": "bobdivx/devforge-store",
+  "git_branch": "main",
+  "git_commit_sha": null,
+  "runtime_defaults": {
+    "build_pack": "static",
+    "is_static": true,
+    "start_command": null,
+    "install_command": null,
+    "build_command": null,
+    "ports_exposes": "80",
+    "base_directory": "/",
+    "publish_directory": "/",
+    "detected_framework": null,
+    "health_check_enabled": true,
+    "health_check_type": "http",
+    "health_check_path": "/",
+    "health_check_port": null
+  },
+  "env_schema": [
+    {
+      "key": "PUBLIC_SITE_NAME",
+      "is_secret": false,
+      "required": false,
+      "default": "Hello DevForge",
+      "description": "Nom affiché sur le site",
+      "is_runtime": true,
+      "is_buildtime": true
+    }
+  ]
+}
