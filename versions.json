@@ -1,19 +1,19 @@
 {
     "devforge": {
-        "version": "4.1.15"
+        "version": "4.1.32"
     },
     "coolify": {
         "v4": {
-            "version": "4.1.15"
+            "version": "4.1.32"
         },
         "nightly": {
-            "version": "4.1.15"
+            "version": "4.1.32"
         },
         "helper": {
-            "version": "1.0.14"
+            "version": "4.1.32"
         },
         "realtime": {
-            "version": "1.0.16"
+            "version": "4.1.32"
         },
         "sentinel": {
             "version": "0.0.21"
